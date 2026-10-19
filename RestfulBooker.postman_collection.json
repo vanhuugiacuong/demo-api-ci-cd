@@ -71,17 +71,15 @@
                   "pm.test(\"Tạo booking thành công (Status 200)\", function () {",
                   "    pm.response.to.have.status(200);",
                   "});",
-                  "// Kiểm tra tên khách hàng khớp với dữ liệu từ file CSV (nếu không có CSV thì lấy giá trị mặc định)",
+                  "// Kiểm tra tên khách hàng khớp với dữ liệu từ file CSV",
                   "pm.test(\"Tên khách hàng khớp với dữ liệu đầu vào\", function () {",
                   "    var jsonData = pm.response.json();",
-                  "    var expectedFirstName = pm.iterationData.get(\"firstname\") || pm.variables.get(\"firstname\");",
+                  "    var expectedFirstName = pm.iterationData.get(\"firstname\");",
                   "    pm.expect(jsonData.booking.firstname).to.eql(expectedFirstName);",
                   "});",
                   "// Lưu lại ID",
-                  "if (pm.response.code === 200) {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.environment.set(\"bookingid\", jsonData.bookingid);",
-                  "}"
+                  "var jsonData = pm.response.json();",
+                  "pm.environment.set(\"bookingid\", jsonData.bookingid);"
                 ]
               }
             }
@@ -370,36 +368,6 @@
           }
         }
       ]
-    }
-  ],
-  "variable": [
-    {
-      "key": "firstname",
-      "value": "Nguyen"
-    },
-    {
-      "key": "lastname",
-      "value": "An"
-    },
-    {
-      "key": "totalprice",
-      "value": "1500"
-    },
-    {
-      "key": "depositpaid",
-      "value": "true"
-    },
-    {
-      "key": "checkin",
-      "value": "2026-11-01"
-    },
-    {
-      "key": "checkout",
-      "value": "2026-11-05"
-    },
-    {
-      "key": "additionalneeds",
-      "value": "Breakfast"
     }
   ]
 }
