@@ -1,0 +1,43 @@
+{
+  "info": {
+    "name": "Production_Monitor_Demo",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "RestfulBooker Health Check",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Hệ thống hoạt động bình thường (Status 201)\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "pm.test(\"Thời gian phản hồi siêu tốc độ (< 500ms)\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(500);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://restful-booker.herokuapp.com/ping",
+          "protocol": "https",
+          "host": [
+            "restful-booker",
+            "herokuapp",
+            "com"
+          ],
+          "path": [
+            "ping"
+          ]
+        }
+      }
+    }
+  ]
+}
